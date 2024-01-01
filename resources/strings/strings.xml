@@ -1,0 +1,7 @@
+<strings>
+  <string id="AppName">Flight Watcher</string>
+  <string id="menu_label_1">Item 1</string>
+  <string id="menu_label_2">Item 2</string>
+  <string id="adsbexApiKeyTitle">ADSB-Exchange API Key</string>
+  <string id="adsbexApiKeyPrompt">Enter your API Key here</string>
+</strings>

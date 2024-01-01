@@ -1,0 +1,5 @@
+<settings>
+  <setting propertyKey="@Properties.adsbexApiKey" title="@Strings.adsbexApiKeyTitle" prompt="@Strings.adsbexApiKeyPrompt">
+    <settingConfig type="alphaNumeric" required="true" />
+  </setting>
+</settings>

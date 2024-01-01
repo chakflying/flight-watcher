@@ -1,0 +1,18 @@
+<drawables>
+  <bitmap id="LauncherIcon" filename="launcher_icon.png" packingFormat="png" />
+  <bitmap id="locationIcon" filename="location_icon.svg" packingFormat="png" />
+  <bitmap id="compassBg" filename="compass_bg.svg" packingFormat="png" />
+  <bitmap id="a_737" filename="aircrafts/737.svg" packingFormat="png" />
+  <bitmap id="a_747" filename="aircrafts/747.svg" packingFormat="png" />
+  <bitmap id="a_777" filename="aircrafts/777.svg" packingFormat="png" />
+  <bitmap id="a_787_a330" filename="aircrafts/787_a330.svg" packingFormat="png" />
+  <bitmap id="a_a340" filename="aircrafts/a340.svg" packingFormat="png" />
+  <bitmap id="a_a380" filename="aircrafts/a380.svg" packingFormat="png" />
+  <bitmap id="a_biz_jet" filename="aircrafts/biz_jet.svg" packingFormat="png" />
+  <bitmap id="a_embraer" filename="aircrafts/embraer.svg" packingFormat="png" />
+  <bitmap id="a_heli" filename="aircrafts/heli.svg" packingFormat="png" />
+  <bitmap id="a_light" filename="aircrafts/light.svg" packingFormat="png" />
+  <bitmap id="a_piper" filename="aircrafts/piper.svg" packingFormat="png" />
+  <bitmap id="a_prop_mid" filename="aircrafts/prop_mid.svg" packingFormat="png" />
+  <bitmap id="a_fighter" filename="aircrafts/fighter.svg" packingFormat="png" />
+</drawables>
