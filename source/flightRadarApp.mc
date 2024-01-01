@@ -12,7 +12,7 @@ class FlightRadarApp extends Application.AppBase {
   function initialize() {
     AppBase.initialize();
 
-    _viewRadius = 10000.0;
+    _viewRadius = 18520.0;
 
     _radarView = new FlightRadarView(_viewRadius);
     _radarDelegate = new FlightRadarDelegate(

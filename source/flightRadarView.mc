@@ -93,6 +93,9 @@ class FlightRadarView extends WatchUi.View {
 
     drawRadarBorders(dc, _systemSettings.screenWidth);
     drawTracks(dc);
+
+    drawUnit(dc);
+
     drawRadarSpinner(dc);
 
     drawCompass(dc);
@@ -114,6 +117,18 @@ class FlightRadarView extends WatchUi.View {
         :transform => xform,
       });
     }
+  }
+
+  function drawUnit(dc as Dc) {
+    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+
+    dc.drawText(
+      _screenCenterPoint[0],
+      _systemSettings.screenHeight * 0.92,
+      Graphics.FONT_XTINY,
+      "10 nmi",
+      Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+    );
   }
 
   function drawRadarBorders(dc as Dc, width as Number) {
