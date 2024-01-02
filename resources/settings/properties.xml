@@ -1,4 +1,4 @@
 <properties>
   <property id="adsbexApiKey" type="string"></property>
-  <property id="viewRadius" type="Number">10000</property>
+  <property id="viewRadius" type="Number">18520</property>
 </properties>
