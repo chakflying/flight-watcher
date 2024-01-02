@@ -1,3 +1,4 @@
+import Toybox.Attention;
 import Toybox.Lang;
 import Toybox.Position;
 import Toybox.Communications;
@@ -193,6 +194,12 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   }
 
   public function setPosition(info as Info) as Void {
+    if (_lastPosition.position == null && info.position != null) {
+      if (Attention has :vibrate) {
+        var vibeData = [new Attention.VibeProfile(50, 500)];
+        Attention.vibrate(vibeData);
+      }
+    }
     _lastPosition = info;
   }
 }
