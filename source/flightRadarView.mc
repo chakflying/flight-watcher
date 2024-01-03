@@ -124,7 +124,7 @@ class FlightRadarView extends WatchUi.View {
 
     dc.drawText(
       _screenCenterPoint[0],
-      _systemSettings.screenHeight * 0.92,
+      _systemSettings.screenHeight * 0.9,
       Graphics.FONT_XTINY,
       "10 nmi",
       Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
@@ -218,7 +218,7 @@ class FlightRadarView extends WatchUi.View {
         if (track.altitude != null) {
           dc.drawText(
             pointScreenCoord[0],
-            pointScreenCoord[1] + 20,
+            pointScreenCoord[1] + _systemSettings.screenHeight.toFloat() * 0.08,
             Graphics.FONT_XTINY,
             (track.altitude / 100).toNumber().toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
