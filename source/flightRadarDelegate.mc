@@ -83,6 +83,14 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   private function getADSBExAPI() as Void {
     var position = _lastPosition.position;
     if (position != null) {
+      var adsbexApiKey =
+        Application.Properties.getValue("adsbexApiKey") as String?;
+
+      if (adsbexApiKey == null || adsbexApiKey.length() == 0) {
+        showError("Error", "Please set ADSB-Exchange API key in settings");
+        return;
+      }
+
       var url = Lang.format(
         "https://adsbexchange-com1.p.rapidapi.com/v2/lat/$1$/lon/$2$/dist/$3$/",
         [position.toDegrees()[0], position.toDegrees()[1], _viewRadius / 1000]
@@ -91,8 +99,7 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
       var options = {
         :method => Communications.HTTP_REQUEST_METHOD_GET,
         :headers => {
-          "X-RapidAPI-Key" => Application.Properties.getValue("adsbexApiKey") as
-          String,
+          "X-RapidAPI-Key" => adsbexApiKey,
           "X-RapidAPI-Host" => "adsbexchange-com1.p.rapidapi.com",
         },
         :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
@@ -129,6 +136,8 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
     } else {
       if (data instanceof Dictionary && data["message"] != null) {
         showError(responseCode.toString(), data["message"]);
+      } else if (responseCode == -402) {
+        showError(responseCode.toString(), "Too many aircrafts");
       } else {
         showError(responseCode.toString(), data);
       }
