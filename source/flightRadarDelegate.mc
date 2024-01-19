@@ -31,14 +31,11 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
     _getTracksTimer.start(method(:getAircrafts), 10000, true);
   }
 
-  // function onMenu() as Boolean {
-  //   WatchUi.pushView(
-  //     new Rez.Menus.MainMenu(),
-  //     new FlightRadarMenuDelegate(),
-  //     WatchUi.SLIDE_UP
-  //   );
-  //   return true;
-  // }
+  function onMenu() as Boolean {
+    var menu = new Rez.Menus.ApiProviderMenu();
+    WatchUi.pushView(menu, new FlightRadarMenuDelegate(menu), WatchUi.SLIDE_UP);
+    return true;
+  }
 
   function getAircrafts() as Void {
     var apiProvider = Application.Properties.getValue("apiProvider") as Number;
@@ -128,7 +125,6 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   ) as Void {
     if (responseCode == 200) {
       if (data instanceof Dictionary) {
-
         var aircraftTracks = new Array<AircraftTrack>[data["ac"].size()];
 
         for (var i = 0; i < data["ac"].size(); i++) {
@@ -278,7 +274,8 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
 
         var tracksReport = new TracksReport(
           new Time.Moment(data["time"]),
-           aircraftTracks);
+          aircraftTracks
+        );
 
         sendTracksReport(tracksReport);
       }
@@ -288,7 +285,7 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   }
 
   function parseOpenskyAircraft(ac as Array, now as Number) as AircraftTrack {
-     var track = new AircraftTrack();
+    var track = new AircraftTrack();
     track.fromOpensky(ac, now);
     return track;
   }

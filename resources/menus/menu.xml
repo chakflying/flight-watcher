@@ -1,4 +1,5 @@
-<menu id="MainMenu">
-    <menu-item id="item_1" label="@Strings.menu_label_1" />
-    <menu-item id="item_2" label="@Strings.menu_label_2" />
-</menu>
+<menu2 id="ApiProviderMenu" title="@Strings.apiProviderTitle">
+    <menu-item id="adsbex" label="@Strings.adsbex" />
+    <menu-item id="flightAware" label="@Strings.flightAware" />
+    <menu-item id="opensky" label="@Strings.opensky" />
+</menu2>
