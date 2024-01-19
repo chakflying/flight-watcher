@@ -3,5 +3,12 @@
   <string id="menu_label_1">Item 1</string>
   <string id="menu_label_2">Item 2</string>
   <string id="adsbexApiKeyTitle">ADSB-Exchange API Key</string>
-  <string id="adsbexApiKeyPrompt">Enter your API Key here</string>
+  <string id="adsbexApiKeyPrompt">Copy value from X-RapidAPI-Key</string>
+  <string id="flightAwareApiKeyTitle">FlightAware AeroAPI Key</string>
+  <string id="flightAwareApiKeyPrompt">Find value in "My AeroAPI"</string>
+  <string id="apiProviderTitle">API Provider</string>
+  <string id="apiProviderPrompt">Select API provider used</string>
+  <string id="adsbex">ADSB-Exchange</string>
+  <string id="flightAware">FlightAware</string>
+  <string id="opensky">OpenSky</string>
 </strings>

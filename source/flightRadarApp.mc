@@ -82,10 +82,10 @@ class FlightRadarApp extends Application.AppBase {
     var info = new Position.Info();
     info.heading = 0.0;
     info.position = new Position.Location({
-      // :latitude => 22.318,
-      :latitude => 25.96,
-      // :longitude => 113.939,
-      :longitude => -80.15,
+      // :latitude => 25.96,
+      // :longitude => -80.15,
+      :latitude => 22.318,
+      :longitude => 113.939,
       :format => :degrees,
     });
 
@@ -96,7 +96,7 @@ class FlightRadarApp extends Application.AppBase {
   //! Update the current position
   //! @param info Position information
   public function onPosition(info as Info) as Void {
-    System.println("Got position update");
+    // System.println("Got position update");
     _radarView.setPosition(info);
     _radarDelegate.setPosition(info);
   }

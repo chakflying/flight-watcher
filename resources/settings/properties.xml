@@ -1,4 +1,6 @@
 <properties>
   <property id="adsbexApiKey" type="string"></property>
-  <property id="viewRadius" type="Number">18520</property>
+  <property id="viewRadius" type="number">18520</property>
+  <property id="flightAwareApiKey" type="string"></property>
+  <property id="apiProvider" type="number">1</property>
 </properties>

@@ -1,5 +1,17 @@
 <settings>
   <setting propertyKey="@Properties.adsbexApiKey" title="@Strings.adsbexApiKeyTitle" prompt="@Strings.adsbexApiKeyPrompt">
-    <settingConfig type="alphaNumeric" required="true" />
+    <settingConfig type="alphaNumeric" />
+  </setting>
+
+  <setting propertyKey="@Properties.flightAwareApiKey" title="@Strings.flightAwareApiKeyTitle" prompt="@Strings.flightAwareApiKeyPrompt">
+    <settingConfig type="alphaNumeric" />
+  </setting>
+
+  <setting propertyKey="@Properties.apiProvider" title="@Strings.apiProviderTitle" prompt="@Strings.apiProviderPrompt">
+    <settingConfig type="list" required="true">
+      <listEntry value="0">@Strings.adsbex</listEntry>
+      <listEntry value="1">@Strings.flightAware</listEntry>
+      <listEntry value="2">@Strings.opensky</listEntry>
+    </settingConfig>
   </setting>
 </settings>

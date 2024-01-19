@@ -41,8 +41,18 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   // }
 
   function getAircrafts() as Void {
-    getADSBExAPI();
-    // getOpenSkyAPI();
+    var apiProvider = Application.Properties.getValue("apiProvider") as Number;
+    switch (apiProvider) {
+      case 0:
+        getADSBExAPI();
+        break;
+      case 1:
+        getFlightAwareApi();
+        break;
+      case 2:
+        getOpenSkyAPI();
+        break;
+    }
     // getAircraftsTest();
   }
 
@@ -87,13 +97,17 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
         Application.Properties.getValue("adsbexApiKey") as String?;
 
       if (adsbexApiKey == null || adsbexApiKey.length() == 0) {
-        showError("Error", "Please set ADSB-Exchange API key in settings");
+        showError("Error", "Please set ADSB-Exchange API key in Settings");
         return;
       }
 
       var url = Lang.format(
         "https://adsbexchange-com1.p.rapidapi.com/v2/lat/$1$/lon/$2$/dist/$3$/",
-        [position.toDegrees()[0], position.toDegrees()[1], _viewRadius / 1000]
+        [
+          position.toDegrees()[0],
+          position.toDegrees()[1],
+          _viewRadius * 0.00053996,
+        ]
       );
 
       var options = {
@@ -114,7 +128,6 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   ) as Void {
     if (responseCode == 200) {
       if (data instanceof Dictionary) {
-        // System.println(data);
 
         var aircraftTracks = new Array<AircraftTrack>[data["ac"].size()];
 
@@ -150,11 +163,82 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
     return track;
   }
 
+  private function getFlightAwareApi() as Void {
+    var position = _lastPosition.position;
+    if (position != null) {
+      var posMin = position.getProjectedLocation(3.926991, _viewRadius);
+      var posMax = position.getProjectedLocation(0.7853982, _viewRadius);
+
+      var apiKey =
+        Application.Properties.getValue("flightAwareApiKey") as String?;
+
+      if (apiKey == null || apiKey.length() == 0) {
+        showError("Error", "Please set FlightAware API key in Settings");
+        return;
+      }
+
+      var query = Lang.format("-latlong \"$1$ $2$ $3$ $4$%22\"", [
+        posMin.toDegrees()[0],
+        posMin.toDegrees()[1],
+        posMax.toDegrees()[0],
+        posMax.toDegrees()[1],
+      ]);
+
+      var options = {
+        :method => Communications.HTTP_REQUEST_METHOD_GET,
+        :headers => {
+          "x-apikey" => apiKey,
+        },
+        :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
+      };
+
+      Communications.makeWebRequest(
+        "https://aeroapi.flightaware.com/aeroapi/flights/search",
+        {
+          "query" => query,
+        },
+        options,
+        method(:onGetFlightAwareApi)
+      );
+    }
+  }
+
+  function onGetFlightAwareApi(
+    responseCode as Number,
+    data as Dictionary or String or Null
+  ) as Void {
+    if (responseCode == 200) {
+      if (data instanceof Dictionary) {
+        var aircraftTracks = new Array<AircraftTrack>[data["flights"].size()];
+
+        for (var i = 0; i < data["flights"].size(); i++) {
+          var ac = data["flights"][i];
+
+          var track = parseFlightAwareAircraft(ac);
+
+          aircraftTracks[i] = track;
+        }
+
+        var tracksReport = new TracksReport(Time.now(), aircraftTracks);
+
+        sendTracksReport(tracksReport);
+      }
+    } else {
+      showError(responseCode.toString(), data);
+    }
+  }
+
+  function parseFlightAwareAircraft(ac as Dictionary) as AircraftTrack {
+    var track = new AircraftTrack();
+    track.fromFlightAware(ac);
+    return track;
+  }
+
   private function getOpenSkyAPI() as Void {
     var position = _lastPosition.position;
     if (position != null) {
-      var posMin = position.getProjectedLocation(3.926991, 5000);
-      var posMax = position.getProjectedLocation(0.7853982, 5000);
+      var posMin = position.getProjectedLocation(3.926991, _viewRadius);
+      var posMax = position.getProjectedLocation(0.7853982, _viewRadius);
 
       Communications.makeWebRequest(
         "https://opensky-network.org/api/states/all",
@@ -179,11 +263,34 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   ) as Void {
     if (responseCode == 200) {
       if (data instanceof Dictionary) {
+        var aircraftTracks = new Array<AircraftTrack>[data["states"].size()];
+
+        // System.println("Found " + data["states"].size() + " flights");
         // System.println(data);
+
+        for (var i = 0; i < data["states"].size(); i++) {
+          var ac = data["states"][i];
+
+          var track = parseOpenskyAircraft(ac, data["time"]);
+
+          aircraftTracks[i] = track;
+        }
+
+        var tracksReport = new TracksReport(
+          new Time.Moment(data["time"]),
+           aircraftTracks);
+
+        sendTracksReport(tracksReport);
       }
     } else {
       showError(responseCode.toString(), data);
     }
+  }
+
+  function parseOpenskyAircraft(ac as Array, now as Number) as AircraftTrack {
+     var track = new AircraftTrack();
+    track.fromOpensky(ac, now);
+    return track;
   }
 
   function showError(errCode as String, message as String) as Void {
