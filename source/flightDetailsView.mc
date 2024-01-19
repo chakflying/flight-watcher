@@ -278,7 +278,7 @@ class FlightDetailsView extends WatchUi.View {
 
   function drawAlt(dc as Dc) as Void {
     dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-    var alt = _track.altitude.toString();
+    var alt = _track.altitude.toNumber().toString();
 
     dc.drawText(
       _screenCenterPoint[0] - _systemSettings.screenHeight * 0.04,
