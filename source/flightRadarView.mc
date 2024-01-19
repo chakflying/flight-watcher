@@ -169,7 +169,9 @@ class FlightRadarView extends WatchUi.View {
           var timeSinceReport = now.subtract(_lastTracksReport.timestamp);
 
           var projectedTravelDistance =
-            track.groundSpeed * 0.51444 * timeSinceReport.value();
+            track.groundSpeed *
+            0.51444 *
+            (timeSinceReport.value() + track.lastUpdate);
 
           var extrapolatedPosition = trackPosition.getProjectedLocation(
             (track.track * Math.PI) / 180.0,
@@ -438,7 +440,7 @@ class FlightRadarView extends WatchUi.View {
         (x - _drawnTracks[i][0]) * (x - _drawnTracks[i][0]) +
         (y - _drawnTracks[i][1]) * (y - _drawnTracks[i][1]);
       if (distance < 800) {
-        System.println("Tapped on drawn track " + _drawnTracks[i][2]);
+        // System.println("Tapped on drawn track " + _drawnTracks[i][2]);
         showDetailsIDs.add(_drawnTracks[i][2]);
       }
     }
