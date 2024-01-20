@@ -46,7 +46,8 @@ class ErrorView extends WatchUi.View {
       :font => [Graphics.FONT_SMALL, Graphics.FONT_TINY, Graphics.FONT_XTINY],
       :locX => WatchUi.LAYOUT_HALIGN_CENTER,
       :locY => _systemSettings.screenWidth * 0.3,
-      :justification => Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER,
+      :justification => Graphics.TEXT_JUSTIFY_CENTER |
+      Graphics.TEXT_JUSTIFY_VCENTER,
       :width => _systemSettings.screenWidth * 0.8,
       :height => _systemSettings.screenWidth * 0.5,
     });
@@ -61,82 +62,82 @@ class ErrorView extends WatchUi.View {
     ) {
       switch (_errCode) {
         case "-1":
-          _message = "BLE Error";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1) as String;
           break;
         case "-2":
-          _message = "BLE Timeout from host";
+          _message = WatchUi.loadResource($.Rez.Strings.error_2) as String;
           break;
         case "-3":
-          _message = "BLE Timeout from server";
+          _message = WatchUi.loadResource($.Rez.Strings.error_3) as String;
           break;
         case "-4":
-          _message = "BLE No data in response";
+          _message = WatchUi.loadResource($.Rez.Strings.error_4) as String;
           break;
         case "-5":
-          _message = "BLE Request Cancelled";
+          _message = WatchUi.loadResource($.Rez.Strings.error_5) as String;
           break;
         case "-101":
-          _message = "BLE Too many requests";
+          _message = WatchUi.loadResource($.Rez.Strings.error_101) as String;
           break;
         case "-102":
-          _message = "BLE Response too large";
+          _message = WatchUi.loadResource($.Rez.Strings.error_102) as String;
           break;
         case "-103":
-          _message = "BLE Send Failed";
+          _message = WatchUi.loadResource($.Rez.Strings.error_103) as String;
           break;
         case "-104":
-          _message = "BLE No Connection";
+          _message = WatchUi.loadResource($.Rez.Strings.error_104) as String;
           break;
         case "-200":
-          _message = "Request invalid HTTP headers";
+          _message = WatchUi.loadResource($.Rez.Strings.error_200) as String;
           break;
         case "-201":
-          _message = "Request invalid HTTP body";
+          _message = WatchUi.loadResource($.Rez.Strings.error_201) as String;
           break;
         case "-202":
-          _message = "Request invalid HTTP method";
+          _message = WatchUi.loadResource($.Rez.Strings.error_202) as String;
           break;
         case "-300":
-          _message = "Request timeout";
+          _message = WatchUi.loadResource($.Rez.Strings.error_300) as String;
           break;
         case "-400":
-          _message = "Response invalid body";
+          _message = WatchUi.loadResource($.Rez.Strings.error_400) as String;
           break;
         case "-401":
-          _message = "Response invalid HTTP headers";
+          _message = WatchUi.loadResource($.Rez.Strings.error_401) as String;
           break;
         case "-402":
-          _message = "Response too large";
+          _message = WatchUi.loadResource($.Rez.Strings.error_402) as String;
           break;
         case "-403":
-          _message = "Response out of memory";
+          _message = WatchUi.loadResource($.Rez.Strings.error_403) as String;
           break;
         case "-1000":
-          _message = "Storage Full";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1000) as String;
           break;
         case "-1001":
-          _message = "HTTPS required";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1001) as String;
           break;
         case "-1002":
-          _message = "Unsupported content type";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1002) as String;
           break;
         case "-1003":
-          _message = "Request cancelled by system";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1003) as String;
           break;
         case "-1004":
-          _message = "Connection dropped";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1004) as String;
           break;
         case "-1005":
-          _message = "Unable to process media";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1005) as String;
           break;
         case "-1006":
-          _message = "Unable to process image";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1006) as String;
           break;
         case "-1007":
-          _message = "Unable to process HLS";
+          _message = WatchUi.loadResource($.Rez.Strings.error_1007) as String;
           break;
         default:
-          _message = "Unknown Error";
+          _message = WatchUi.loadResource($.Rez.Strings.error_unk) as String;
           break;
       }
     }

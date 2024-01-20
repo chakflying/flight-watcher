@@ -1,7 +1,5 @@
 <strings>
   <string id="AppName">Flight Watcher</string>
-  <string id="menu_label_1">Item 1</string>
-  <string id="menu_label_2">Item 2</string>
   <string id="adsbexApiKeyTitle">ADSB-Exchange API Key</string>
   <string id="adsbexApiKeyPrompt">Copy value from X-RapidAPI-Key</string>
   <string id="flightAwareApiKeyTitle">FlightAware AeroAPI Key</string>
@@ -11,4 +9,30 @@
   <string id="adsbex">ADSB-Exchange</string>
   <string id="flightAware">FlightAware</string>
   <string id="opensky">OpenSky</string>
+  <string id="error_1">BLE Error</string>
+  <string id="error_2">BLE Timeout from host</string>
+  <string id="error_3">BLE Timeout from server</string>
+  <string id="error_4">BLE No data in response</string>
+  <string id="error_5">BLE Request Cancelled</string>
+  <string id="error_101">BLE Too many requests</string>
+  <string id="error_102">BLE Response too large</string>
+  <string id="error_103">BLE Send Failed</string>
+  <string id="error_104">BLE No Connection</string>
+  <string id="error_200">Request invalid HTTP headers</string>
+  <string id="error_201">Request invalid HTTP body</string>
+  <string id="error_202">Request invalid HTTP method</string>
+  <string id="error_300">Request timeout</string>
+  <string id="error_400">Response invalid body</string>
+  <string id="error_401">Response invalid HTTP headers</string>
+  <string id="error_402">Response too large</string>
+  <string id="error_403">Response out of memory</string>
+  <string id="error_1000">Storage Full</string>
+  <string id="error_1001">HTTPS required</string>
+  <string id="error_1002">Unsupported content type</string>
+  <string id="error_1003">Request cancelled by system</string>
+  <string id="error_1004">Connection dropped</string>
+  <string id="error_1005">Unable to process media</string>
+  <string id="error_1006">Unable to process image</string>
+  <string id="error_1007">Unable to process HLS</string>
+  <string id="error_unk">Unknown Error</string>
 </strings>
