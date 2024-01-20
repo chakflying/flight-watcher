@@ -215,7 +215,7 @@ class FlightRadarView extends WatchUi.View {
         _drawnTracks.add([pointScreenCoord[0], pointScreenCoord[1], i]);
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.fillCircle(pointScreenCoord[0], pointScreenCoord[1], 6);
+        dc.fillCircle(pointScreenCoord[0], pointScreenCoord[1], _systemSettings.screenWidth.toFloat() * 0.023);
 
         if (track.altitude != null) {
           dc.drawText(
@@ -363,7 +363,7 @@ class FlightRadarView extends WatchUi.View {
     var x = sin;
     var y = cos;
 
-    var lineLength = 16;
+    var lineLength = _systemSettings.screenWidth.toFloat() * 0.07;
 
     dc.drawLine(
       point[0],
