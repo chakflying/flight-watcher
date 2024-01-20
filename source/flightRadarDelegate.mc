@@ -295,11 +295,9 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
     var errorViewDelegate = new $.ErrorViewDelegate();
 
     var currentView = WatchUi.getCurrentView();
-    if (currentView[0] instanceof $.ErrorView) {
-      WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+    if (currentView[0] instanceof $.FlightRadarView) {
+      WatchUi.pushView(errorView, errorViewDelegate, WatchUi.SLIDE_UP);
     }
-
-    WatchUi.pushView(errorView, errorViewDelegate, WatchUi.SLIDE_UP);
   }
 
   private function sendTracksReport(tracksReport as TracksReport) as Void {
