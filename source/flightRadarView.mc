@@ -336,6 +336,9 @@ class FlightRadarView extends WatchUi.View {
       _screenCenterPoint[1] + endPoint[1] * radius
     );
 
+    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+    dc.fillCircle(_screenCenterPoint[0], _screenCenterPoint[1], 4);
+
     _spinnerState = _spinnerState + (Math.PI * 2.0) / 100.0;
     if (_spinnerState > 2.0 * Math.PI) {
       _spinnerState = _spinnerState - 2.0 * Math.PI;
