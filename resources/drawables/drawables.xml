@@ -1,6 +1,7 @@
 <drawables>
   <bitmap id="LauncherIcon" filename="launcher_icon.png" packingFormat="png" />
   <bitmap id="locationIcon" filename="location_icon.svg" packingFormat="png" />
+  <bitmap id="webIcon" filename="globe_alt.svg" packingFormat="png" />
   <bitmap id="compassBg" filename="compass_bg.svg" packingFormat="png" />
   <bitmap id="a_737" filename="aircrafts/737.svg" packingFormat="png" />
   <bitmap id="a_747" filename="aircrafts/747.svg" packingFormat="png" />
