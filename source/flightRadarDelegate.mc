@@ -145,8 +145,6 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
     } else {
       if (data instanceof Dictionary && data["message"] != null) {
         showError(responseCode.toString(), data["message"]);
-      } else if (responseCode == -402) {
-        showError(responseCode.toString(), "Too many aircrafts");
       } else {
         showError(responseCode.toString(), data);
       }
