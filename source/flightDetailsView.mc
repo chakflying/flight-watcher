@@ -88,6 +88,7 @@ class FlightDetailsView extends WatchUi.View {
       case "A338":
       case "A339":
       case "A359":
+      case "A35K":
         _aircraftDiagram =
           WatchUi.loadResource($.Rez.Drawables.a_787_a330) as BitmapReference;
         break;
