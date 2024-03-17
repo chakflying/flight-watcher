@@ -9,6 +9,10 @@
   <string id="adsbex">ADSB-Exchange</string>
   <string id="flightAware">FlightAware</string>
   <string id="opensky">OpenSky</string>
+  <string id="openskyUsername">OpenSky Username</string>
+  <string id="openskyPassword">OpenSky Password</string>
+  <string id="openskyUsernamePrompt">your account username</string>
+  <string id="openskyPasswordPrompt">your account password</string>
   <string id="error_1">BLE Error</string>
   <string id="error_2">BLE Timeout from host</string>
   <string id="error_3">BLE Timeout from server</string>

@@ -2,5 +2,7 @@
   <property id="adsbexApiKey" type="string"></property>
   <property id="viewRadius" type="number">18520</property>
   <property id="flightAwareApiKey" type="string"></property>
+  <property id="openskyUsername" type="string"></property>
+  <property id="openskyPassword" type="string"></property>
   <property id="apiProvider" type="number">2</property>
 </properties>

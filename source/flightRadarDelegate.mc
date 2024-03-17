@@ -5,6 +5,7 @@ import Toybox.Communications;
 import Toybox.Timer;
 import Toybox.Application;
 import Toybox.WatchUi;
+import Toybox.StringUtil;
 
 class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
   private var _lastPosition as Position.Info;
@@ -234,6 +235,29 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
       var posMin = position.getProjectedLocation(3.926991, _viewRadius);
       var posMax = position.getProjectedLocation(0.7853982, _viewRadius);
 
+      var options = {
+        :method => Communications.HTTP_REQUEST_METHOD_GET,
+        :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
+      };
+
+      var username =
+        Application.Properties.getValue("openskyUsername") as String?;
+      var password =
+        Application.Properties.getValue("openskyPassword") as String?;
+
+      if (
+        username != null &&
+        username.length() > 0 &&
+        password != null &&
+        password.length() > 0
+      ) {
+        options[:headers] = {
+          "Authorization" => Lang.format("Basic $1$", [
+            StringUtil.encodeBase64(username + ":" + password),
+          ]),
+        };
+      }
+
       Communications.makeWebRequest(
         "https://opensky-network.org/api/states/all",
         {
@@ -243,9 +267,7 @@ class FlightRadarDelegate extends WatchUi.BehaviorDelegate {
           "lamax" => posMax.toDegrees()[0],
           "lomax" => posMax.toDegrees()[1],
         },
-        {
-          :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
-        },
+        options,
         method(:onGetOpenSkyAPI)
       );
     }

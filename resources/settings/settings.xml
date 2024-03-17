@@ -7,6 +7,13 @@
     <settingConfig type="alphaNumeric" />
   </setting>
 
+  <setting propertyKey="@Properties.openskyUsername" title="@Strings.openskyUsername" prompt="@Strings.openskyUsernamePrompt">
+    <settingConfig type="alphaNumeric" />
+  </setting>
+  <setting propertyKey="@Properties.openskyPassword" title="@Strings.openskyPassword" prompt="@Strings.openskyPasswordPrompt">
+    <settingConfig type="alphaNumeric" />
+  </setting>
+
   <setting propertyKey="@Properties.apiProvider" title="@Strings.apiProviderTitle" prompt="@Strings.apiProviderPrompt">
     <settingConfig type="list" required="true">
       <listEntry value="0">@Strings.adsbex</listEntry>
